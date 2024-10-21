@@ -1,1 +1,0 @@
-## React Chrome extension template

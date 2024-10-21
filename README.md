@@ -1,46 +1,49 @@
-# Getting Started with Create React App
+# React Chrome extension template
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Steps
 
-## Available Scripts
+1. 리액트 설치
 
-In the project directory, you can run:
+```
+yarn create react-app my-chrome-app --template typescript
+```
 
-### `yarn start`
+2. `manifest.json` 수정
+   `manifest.json` 은 브라우저에 이 앱에 대한 정보를 알려주는 파일입니다. 이 앱이 크롬 확장 프로그램이라는 것을 브라우저에 알려줘야 합니다.
+   [여기](https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world?hl=ko)를 참고해 `manifest.json` 을 아래와 같이 작성합니다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
+{
+  "manifest_version": 3,
+  "name": "Hello Extensions",
+  "description": "Base Level Extension",
+  "version": "1.0",
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": "logo192.png"
+  }
+}
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- **manifest_version**: 이 필드는 manifest 파일의 버전을 지정합니다. 현재 Chrome에서 지원하는 최신 버전은 3입니다. 이는 확장 프로그램의 구조와 기능을 정의하는 데 중요한 요소입니다.
 
-### `yarn test`
+- **name**: 확장 프로그램의 이름을 지정합니다. 사용자가 Chrome 웹 스토어에서 이 이름으로 확장 프로그램을 찾고 인식하게 됩니다.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **description**: 확장 프로그램에 대한 간단한 설명을 제공합니다. 사용자에게 이 확장 프로그램이 무엇을 하는지 이해할 수 있도록 돕습니다.
 
-### `yarn build`
+- **version**: 확장 프로그램의 버전을 지정합니다. 이 필드는 확장 프로그램의 업데이트 및 관리에 사용됩니다. 주로 주버전, 부버전, 패치버전 형태로 구성됩니다.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **action**: 확장 프로그램의 사용자 인터페이스와 관련된 설정을 정의합니다. 여기에는 기본 팝업과 아이콘 설정이 포함됩니다.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **default_popup**: 확장 프로그램 아이콘을 클릭했을 때 열리는 HTML 파일을 지정합니다. 이 경우 index.html이 기본 팝업으로 설정되어 있습니다.
+- **default_icon**: 확장 프로그램의 기본 아이콘을 지정합니다. 이 경우 logo192.png라는 이미지 파일이 아이콘으로 사용됩니다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. 빌드
 
-### `yarn eject`
+```
+yarn build
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+4. 빌드 결과물 업로드
+   chrome://extensions 에 들어가 빌드 결과물을 올려줍니다.
+   ![alt text](image.png)
